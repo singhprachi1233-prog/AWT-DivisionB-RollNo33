@@ -1,0 +1,42 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: lightblue;
+}
+
+.container{
+    width: 500px;
+    margin: auto;
+    margin-top: 40px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px gray;
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+}
+
+input[type="submit"]{
+    background:green;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+}
+
+input[type="submit"]:hover{
+    background:darkgreen;
+}
+
+#result{
+    margin-top:20px;
+    color:blue;
+    font-weight:bold;
+}
