@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Learning Progress Dashboard</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+        }
+
+        .container{
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2{
+            text-align: center;
+        }
+
+        input{
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"]{
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result{
+            margin-top:20px;
+            font-weight:bold;
+            color:blue;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>JavaScript Learning Progress Dashboard</h2>
+
+<form onsubmit="return validateForm()">
+
+Name:
+<input type="text" id="name">
+
+Roll Number:
+<input type="number" id="roll">
+
+Topics Completed:
+<input type="number" id="topics">
+
+Practice Hours:
+<input type="number" id="hours">
+
+Confidence Rating (1-10):
+<input type="number" id="rating">
+
+<input type="submit" value="Check Progress">
+
+</form>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function validateForm(){
+
+    let name=document.getElementById("name").value;
+    let roll=document.getElementById("roll").value;
+    let topics=document.getElementById("topics").value;
+    let hours=document.getElementById("hours").value;
+    let rating=document.getElementById("rating").value;
+
+    if(name=="" || roll=="" || topics=="" || hours=="" || rating==""){
+        alert("All fields are required");
+        return false;
+    }
+
+    if(rating<1 || rating>10){
+        alert("Confidence Rating must be between 1 and 10");
+        return false;
+    }
+
+
+    let lastDigit = roll % 10;
+
+    if(lastDigit % 2 == 0){
+        alert("Roll Number ends with EVEN digit");
+    }
+    else{
+        alert("Roll Number ends with ODD digit");
+    }
+
+    calculateProgress(topics,hours,rating);
+
+    return false;
+}
+
+function calculateProgress(topics,hours,rating){
+
+    let category="";
+
+    if(topics>=8 && hours>=20 && rating>=8){
+        category="Excellent";
+    }
+    else if(topics>=5 && hours>=10 && rating>=5){
+        category="Good";
+    }
+    else{
+        category="Needs Improvement";
+    }
+
+    
+    const jsTopics=[
+        "Variables",
+        "Functions",
+        "DOM Manipulation"
+    ];
+
+    let topicList="<ul>";
+
+    jsTopics.forEach(function(topic){
+        topicList+="<li>"+topic+"</li>";
+    });
+
+    topicList+="</ul>";
+
+    document.getElementById("result").innerHTML=
+    "<h3>Progress Category : "+category+"</h3>"+
+    "<h3>Topics Learned</h3>"+
+    topicList;
+}
+
+</script>
+
+</body>
+</html>
